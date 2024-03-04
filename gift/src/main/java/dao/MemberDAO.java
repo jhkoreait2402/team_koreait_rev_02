@@ -40,9 +40,16 @@ public class MemberDAO {
 	}
 
 
-	public void insert(MemberDTO memberDTO) {
-		System.out.println(memberDTO.getBu_id());
-		System.out.println(memberDTO.getBu_name());
+	public void insert(HashMap<String, String> m_join_insert) {
+		System.out.println("DAO 자바 출력");
+		System.out.println(m_join_insert.get("id"));
+		System.out.println(m_join_insert.get("pwd"));
+		System.out.println(m_join_insert.get("name"));
+		System.out.println(m_join_insert.get("addr"));
+		System.out.println(m_join_insert.get("email"));
+		System.out.println(m_join_insert.get("phone"));
+		sqlSession.insert("m.memberjoin", m_join_insert);
+		System.out.println("insert완료");
 		//sqlSession.insert("m.memberjoin", memberDTO);
 		
 	}

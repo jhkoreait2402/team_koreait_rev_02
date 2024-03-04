@@ -6,9 +6,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link rel="/../../../resources/css/member/login_style.css">
+<link rel="../../../resources/css/member/login_style.css">
 
-<script src="resources/js/HttpRequest.js"></script>
+<script src="resources/js/httpRequest.js"></script>
 
 <script type="text/javascript">
 	
@@ -84,6 +84,8 @@
             <tr>
             	<td>
             		<input type="button" value="로그인" onclick="send(this.form)">
+            		<input type="button" value="회원가입" onclick="location.href='/gift/mjoin'">
+            		
             	</td>
             </tr>
         </table>
