@@ -17,6 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	resultMap="molu" 
  -->
 	
+	<!-- 로그인 -->
 	<select id="memberlogin" parameterType="java.util.HashMap" resultType="member">
 		select * from member where m_id =#{id} and m_pwd =#{pwd}
 	</select>
@@ -27,13 +28,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- </insert> -->
 	
 	
-	
+	<!-- 통상적인 회원가입 -->
 	<!-- insert, delete, update는 resultType를 자동처리해 쓸필요없음. --> 
 	<insert id="memberjoin" parameterType="java.util.HashMap">
 		INSERT INTO MEMBER (M_IDX, M_ID, M_PWD, M_NAME, M_ADDRESS, M_EMAIL, M_PHONE) 
 		VALUES (SEQ_M_IDX.NEXTVAL, #{id}, #{pwd}, #{name}, #{addr}, #{email}, #{phone})
 	</insert>
 	 
+	 
+	 <!-- 가입 시 id 중복확인 -->
+	 <!-- java.lang.String 대신 String 쓸 수 있음. -->
+	<select id="checkid" parameterType="String" resultType="String">
+		select m_id from member where m_id=#{id}
+	</select>
 
 	
 </mapper>

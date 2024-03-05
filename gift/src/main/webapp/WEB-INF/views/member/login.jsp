@@ -49,7 +49,7 @@
 			if(eval2[0]['data']=='null_data'){
 				alert("아이디나 비밀번호가 일치하지 않습니다.");
 			} else{
-				location.href='/gift';
+				location.href='/gift/testpage';
 			}
 			
 			//메인화면으로 리다이렉트
@@ -85,9 +85,9 @@
             	<td>
             		<input type="button" value="로그인" onclick="send(this.form)">
             		<input type="button" value="회원가입" onclick="location.href='/gift/mjoin'">
-            		
             	</td>
             </tr>
+            <tr><td><input type="button" value="아이디, 비밀번호 찾기" onclick="selectimfor(this.form)"></td></tr>
         </table>
     </form>
 </body>
