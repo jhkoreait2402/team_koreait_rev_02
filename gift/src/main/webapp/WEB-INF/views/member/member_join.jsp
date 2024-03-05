@@ -81,22 +81,16 @@
 			//파라미터 오류가 났어서 수정한적있음.
 			
 			//alert(param);
-			sendRequest(url,param,"POST");
+			sendRequest(url,param,callback,"POST");
 		}
-		
-		
-
-		/*
-		if(xhr.readyState==4 & xhr.status==200) {
-			location.href="/gift";//괄호아님
-		} else {
-			alert("회원가입에 실패했습니다. 다시 시도해 주십시오.");
-			location.href="/gift/mjoin";
-		}*/
-		//location.href="/gift/mjoin";
 	}
 	
-	
+	function callback() {
+		if(xhr.readyState==4 & xhr.status==200) {
+			alert("회원가입이 정상적으로 이루어졌습니다.");
+			location.href='/gift/mlogin';
+		}
+	}	
 	
 
 	/*
@@ -108,23 +102,63 @@
 	*/
 	
 	function idcheck(f) {
-		alert("아이디 체크 시험");
+		//alert("아이디 체크 시험");
 		
 		//id값만 가져와 컨트롤러에 요청 보냄
+		//onclick=idcheck(this.form)에서 this.form안붙여서 값 못가져옴.
 		
-		param = f.
+		//id값, 파라미터로 만들어 링크 보낼 값
+		let param_id = f.join_id_text.value.trim();
+		let send_id = 'id='+param_id;
 		
-
-		//"searched_member_id_for_join"의 innerText에 값을 집어넣으려 함
-		let checked_id = document.getElementById("searched_member_id_for_join");
 		
-		checked_id.innerText = "해당 아이디를 사용할 수 있습니다.";
+		if(param_id==''){ 
+			alert('아이디를 입력해주세요'); 
+			return;
+		} else {
+			//alert("가져온 아이디는 "+param_id);
+			//id, url, get
+			sendRequest( "midcheck", send_id, checkidback, "POST");
+		}
+		
+		//리턴 못함..? 가능
+		
+		
 		
 		
 
 	}
 	
-	
+	function checkidback() {
+		if(xhr.readyState==4 & xhr.status==200){
+			
+			//xhr.responseText를 써야 가져올수있음
+			let check = xhr.responseText;
+			
+			//eval(param)로 함수 실행
+			let check_result = eval(check);
+			
+			//변수에 집어넣음
+			//뒤에 키값도 붙여야 함.
+			let final_result = check_result[0]["result"];
+			
+			//콘솔에서 임시 확인
+			console.log(final_result);
+			
+			
+			if(final_result == 'no') {
+				alert("중복된 아이디가 있습니다. 다시 입력해 주십시오.");
+			} else if(final_result == 'yes'){
+			//id가 데이터베이스에 조회 시도 후 null로 나온다면,
+			//"searched_member_id_for_join"의 innerText에 값을 집어넣으려 함
+			let checked_id = document.getElementById("searched_member_id_for_join");
+			
+			checked_id.innerText = "해당 아이디를 사용할 수 있습니다.";
+			
+			}
+			
+		}
+	}
 
 </script>
 
@@ -137,7 +171,7 @@
                 <td class="join_col_style">
                 	<div>아이디</div>
                     <input type="text" placeholder="아이디를 입력해주세요" name="join_id_text" id="login_id_text">
-                    <input type="button" value="아이디 중복확인" onclick="idcheck()">
+                    <input type="button" value="아이디 중복확인" onclick="idcheck(this.form)">
                     <div id="searched_member_id_for_join"></div>
                 </td>
             </tr>

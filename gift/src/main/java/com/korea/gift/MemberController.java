@@ -118,7 +118,27 @@ public class MemberController {
    
    //이미 존재하는 아이디 찾기
    
-   
+   @RequestMapping("midcheck")
+   @ResponseBody
+   public String m_idcheck(String id) {
+	   System.out.println("midcheck들어옴");
+	   System.out.println(id);
+	   
+	   
+	   String checked_id = memberDAO.check_id(id);
+	   
+	   
+	   if(checked_id==null) {
+		   System.out.println("사용 가능한 아이디입니다.");
+		   return "[{'result':'yes'}]";
+	   } else {
+	   System.out.println("이미 중복된 아이디가 있습니다."+checked_id);
+	   return "[{'result':'no'}]";
+	   }
+	   
+	   
+	   
+   }
    
    
    //회원가입 페이지
@@ -130,8 +150,9 @@ public class MemberController {
    
    
    //회원가입 기능(순수 가입기능만 있어 mybatis에서 가야 걸러내 아이디 중복 시 오류가 나버림)
-   
+   //responsebody 어노테이션 안붙여서 check your resolve setup! 뜸
    @RequestMapping("mjoininsert")
+   @ResponseBody
    public void memberinsert(String id, String pwd, String name, String addr, String email, String phone){
       
       if(id==null) {
@@ -153,21 +174,26 @@ public class MemberController {
       System.out.println("dao연산 완료");
       
       
-      
-//      
-//      insert_dto.setM_id(id);
-//      insert_dto.setM_pwd(pwd);
-//      insert_dto.setM_name(name);
-//      insert_dto.setM_address(addr);
-//      insert_dto.setM_email(email);
-//      insert_dto.setM_phone(phone);
-//      System.out.println(id);
-//      
-//      
-      //memberDAO.insert(insert_dto);
    }
    
+   @RequestMapping("testpage")
+   public String testpage() {
+	   return Common.Member.VIEW_PATH + "/testpage.jsp";
+   }
+   
+   
+   
+   
+   
+   
+   //logout
+   
 
+   @RequestMapping("mlogout")
+   public String mlogout() {
+	   session.removeAttribute("m_idx");
+	   return Common.Member.VIEW_PATH+"/login.jsp";
+   }
    
    
 

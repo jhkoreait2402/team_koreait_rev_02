@@ -14,7 +14,15 @@
 <script type="text/javascript">
 
 	function logout(f) {
+		//alert("로그아웃되었습니다.");
+		<% session.removeAttribute("m_idx"); // 한개만 삭제
+			//session.invalidate(); // 초기화
+			
+			//컨트롤러 넘기려고 했지만 실패..
+			
+		%>
 		//location.href="/gift/testpage";
+		//location.href='login.jsp';
 		
 		
 		//xhr.sendRequest(param,"memberlogout","POST");
@@ -31,7 +39,7 @@
 <table>
 	<thead></thead>
 	<tr>
-		<td><input type="button" value="로그아웃" onclick="location.href='mlogout'"></td>
+		<td></td>
 	</tr>
 </table>
 
