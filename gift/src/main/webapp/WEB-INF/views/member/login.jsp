@@ -6,7 +6,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link rel="../../../resources/css/member/login_style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/member/login_style.css">
+<!-- ${pageContext.request.contextPath}넣어서 가능했음. -->
 
 <script src="resources/js/httpRequest.js"></script>
 
@@ -65,29 +66,45 @@
 
 </script>
 
+<style type="text/css">
+
+
+</style>
 
 </head>
 <body>
-    <form>
+    <form id = "member_login_form">
         <table id="login_table">
 			<caption id="member_login_title">로그인</caption>
-            <tr>
-                <td class="login_id_style">
-                    <input type="text" placeholder="아이디를 입력해주세요" name="login_id_text" id="login_id_text">
-                </td>
-            </tr>
-            <tr>
-                <td>
-					<input type="password" placeholder="비밀번호를 입력해주세요" name="login_pw_text" id="login_pw_text">
-                </td>
-            </tr>
-            <tr>
-            	<td>
-            		<input type="button" value="로그인" onclick="send(this.form)">
-            		<input type="button" value="회원가입" onclick="location.href='/gift/mjoin'">
-            	</td>
-            </tr>
-            <tr><td><input type="button" value="아이디, 비밀번호 찾기" onclick="selectimfor(this.form)"></td></tr>
+            <tbody>
+	            <tr class="member_login_tablemargin">
+	                <td class="member_login_text">
+	                    <input type="text" placeholder="아이디를 입력해주세요" name="login_id_text" class="member_login_id_pwd_text">
+	                </td>
+	            </tr>
+	            <tr>
+	                <td class="member_login_text">
+						<input type="password" placeholder="비밀번호를 입력해주세요" name="login_pw_text" class="member_login_id_pwd_text">
+	                </td>
+	            </tr>
+	           
+	            <tr class="member_login_tablemargin">
+		            <td >
+		            	<input type="button" value="로그인" onclick="send(this.form)"class="member_login">
+		            </td>
+	            </tr>
+	            
+	             <tr class="member_login_tablemargin">
+	            	<td id="member_login_top_bottom">
+	            		<input type="button" value="아이디 찾기" onclick="selectmidfor(this.form)">
+	            		<input type="button" value="비밀번호 찾기" onclick="selectmpwdfor(this.form)">
+	            		<input type="button" value="회원가입" onclick="location.href='/gift/mjoin'">
+	            	</td>
+	            </tr>
+            </tbody>
+            	
+            
+            
         </table>
     </form>
 </body>

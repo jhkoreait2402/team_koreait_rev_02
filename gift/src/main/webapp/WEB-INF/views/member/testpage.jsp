@@ -10,18 +10,7 @@
 
 <script src="resources/js/httpRequest.js"></script>
 
-<!-- script 위에 태그 안붙여서  -->
-<script type="text/javascript">
 
-	function logout(f) {
-		//location.href="/gift/testpage";
-		
-		
-		//xhr.sendRequest(param,"memberlogout","POST");
-		
-	}
-	
-</script>
 </head>
 
 <body>

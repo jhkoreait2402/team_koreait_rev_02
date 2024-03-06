@@ -88,9 +88,16 @@ public class MemberController {
       
       //세션에 들어갈 데이터 변수에 값 지정
       int m_idx = dto.getM_idx();
+      String m_name = dto.getM_name();
       
       //세션 설정
       session.setAttribute("m_idx", m_idx);
+      
+      //세션 추가 설정 - 이름
+      session.setAttribute("m_name", m_name);
+      
+      
+      
       
       //세션 조회
       int idx_session = (int) session.getAttribute("m_idx");
