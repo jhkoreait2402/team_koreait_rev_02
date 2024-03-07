@@ -204,7 +204,15 @@ public class MemberController {
    
    
 
-
+   //member_idcheck
+   
+   
+   @RequestMapping("mloginidcheck")
+   @ResponseBody
+   public void member_login_idcheck(String id){
+	   System.out.println("ㅎㅇ");
+	   System.out.println("체크한 아이디는 "+id);
+   }
    
    
    
