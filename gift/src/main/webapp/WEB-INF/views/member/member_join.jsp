@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/member/member_imfor_insert.css">
+
 <!-- 
 
 <script
@@ -167,47 +169,48 @@
 <body>
     <form>
         <table id="join_table">
+        	<caption id="member_insert_title">회원가입</caption>
             <tr>
                 <td class="join_col_style">
-                	<div>아이디</div>
-                    <input type="text" placeholder="아이디를 입력해주세요" name="join_id_text" id="login_id_text">
-                    <input type="button" value="아이디 중복확인" onclick="idcheck(this.form)">
+                	<div class="member_insert_intro_text">아이디</div>
+                    <input type="text" placeholder="아이디를 입력해주세요" name="join_id_text" class="member_join_text">
+                    <input type="button" value="아이디 중복확인" onclick="idcheck(this.form)" class="member_insert_id_check">
                     <div id="searched_member_id_for_join"></div>
                 </td>
             </tr>
             <tr>
                 <td class="join_col_style">
-                	<div>비밀번호</div>
-					<input type="password" placeholder="비밀번호를 입력해주세요" name="join_pw_text" id="login_pw_text">
+                	<div class="member_insert_intro_text">비밀번호</div>
+					<input type="password" placeholder="비밀번호를 입력해주세요" name="join_pw_text" class="member_join_text">
                 </td>
             </tr>
             <tr>
                 <td class="join_col_style">
-                	<div>이름</div>
-                    <input type="text" placeholder="성함을 입력해주세요" name="join_name_text" id="login_id_text">
+                	<div class="member_insert_intro_text">이름</div>
+                    <input type="text" placeholder="성함을 입력해주세요" name="join_name_text" class="member_join_text">
                 </td>
             </tr>
             <tr>
                 <td class="join_col_style">
-                	<div>주소</div>
-					<input type="text" placeholder="주소를 입력해주세요" name="join_addr_text" id="login_pw_text">
+                	<div class="member_insert_intro_text">주소</div>
+					<input type="text" placeholder="주소를 입력해주세요" name="join_addr_text" class="member_join_text">
                 </td>
             </tr>
             <tr>
                 <td class="join_col_style">
-               		<div>이메일</div>
-                    <input type="text" placeholder="이메일을 입력해주세요" name="join_email_text" id="login_id_text">
+               		<div class="member_insert_intro_text">이메일</div>
+                    <input type="text" placeholder="이메일을 입력해주세요" name="join_email_text" class="member_join_text">
                 </td>
             </tr>
             <tr>
                 <td class="join_col_style">
-                	<div>전화번호</div>
-					<input type="text" placeholder="전화번호를 입력해주세요" name="join_phone_text" id="login_pw_text">
+                	<div class="member_insert_intro_text">전화번호</div>
+					<input type="text" placeholder="전화번호를 입력해주세요" name="join_phone_text" class="member_join_text">
                 </td>
             </tr>
             <tr>
             	<td>
-            		<input type="button" value="가입" onclick="send(this.form)">
+            		<input type="button" value="회원가입" onclick="send(this.form)" class="member_insert_select_detail">
             	</td>
             </tr>
         </table>
