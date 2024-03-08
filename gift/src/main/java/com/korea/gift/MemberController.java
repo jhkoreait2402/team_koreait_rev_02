@@ -1,8 +1,8 @@
 package com.korea.gift;
 
 import java.util.HashMap;
-
-
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import dao.MemberDAO;
@@ -207,11 +208,18 @@ public class MemberController {
    //member_idcheck
    
    
-   @RequestMapping("mloginidcheck")
+   @RequestMapping("mloginidsave")
    @ResponseBody
-   public void member_login_idcheck(String id){
+   public HashMap<String, String> member_login_idcheck(String id){
 	   System.out.println("ㅎㅇ");
-	   System.out.println("체크한 아이디는 "+id);
+	   System.out.println("체크한 아이디는 "+ id);
+	   HashMap<String, String> map = new HashMap<String, String>();
+	   
+	   map.put("id", id);
+	   
+	   
+			   
+	   return map;
    }
    
    

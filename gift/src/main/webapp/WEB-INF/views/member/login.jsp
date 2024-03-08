@@ -11,7 +11,7 @@
 
 <script src="resources/js/httpRequest.js"></script>
 
-<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.2.js"></script>
 
 <script type="text/javascript">
 	
@@ -69,34 +69,86 @@
 		
 		//입력한 아이디가 db에 있든 없든 쿠키로 저장해버리기
 		
+		//url, param, callback, method
+		//url은 get은 param 추가, post는 추가 안함, 이 상태로 xhr.open()에 메서드, true/false 사이에 들이부음.
+		//get은 null, post 방식 메서드면 param은 send()에 붙임
+		//post면 xhr.sendRequestHeader에 Content-type(jquery ajax는 ContentType), application/x-www-form-urlencoded
+		
+		//xhr = new XMLHttpRequest(); -> ie쓰면 다른것도 붙여야 함
+		//get:url+param
+		//post:url그대로
+		//send()에는 get은 null
+		//post면 xhr.sendRequestHeader에 Content-type(jquery ajax는 ContentType), 
+		//application/x-www-form-urlencoded
+		//xhr.onreadystatechange = callBack;
 	}
 	
 	function idsave(f){
 		
 		
 		let saved_id = f.login_id_text.value.trim();
-		//alert("ㅎㅇ");
+		//let query_saved_id="{'saved_id':"+"'"+saved_id+"'}";
 		
+		
+
 		//체크박스 체크 시 아이디를 세션으로 보냄
 		if(document.getElementById('member_save_id_checkbox').checked == true){
-			alert("잘 입력하셨습니다");
-			
+			//alert("잘 입력하셨습니다");
+			//alert(saved_id);
 			if(saved_id==null || saved_id=='') {
 				alert("아이디를 입력해 주십시오");
+				//alert(query_saved_id);
 			}else{
 				alert("당신의 저장한 아이디는 "+saved_id);
+				//alert(query_saved_id);
 				//여기서 시작
-				
+				//console.log(query_saved_id);
+				console.log(saved_id);
 				//ajax 안됨 지금..?
 				$.ajax({
 					
 					//url, data, datatype, method
 					
-					url : "/gift/mloginidcheck",
-					data : saved_id/*${login_id_text}*/,
-					datatype : "JSON",
-					method : "POST"
+						url : "/gift/mloginidsave",
+						type:"post",
+						data:{
+							id : saved_id
+						},
+						contentType: "application/x-www-form-urlencoded",
+						success:function(data){
+							alert(data.id);
+							alert(JSON.stringify(data));
+							console.log(data.id);
+							console.log(JSON.stringify(data));
+						},
+						error:function(){
+							alert("에러!");
+						}
+					
+
 				});
+				
+				/*
+				url:"/gift/mloginidsave",
+				data: {
+					name : "이름"
+				},
+				dataType:"text", // 돌려받는게 DATATYPE
+				contentType: "application/x-www-form-urlencoded",
+				type:"POST",
+				success: function(data){
+					if(data){
+						alert("데이터가 넘어감");
+					} else {
+						alert("데이터가 안넘어감");
+						console.log(data);
+					}
+				},
+				error:function(data){
+					alert("실패");
+					alert(data);
+				}
+				*/
 				
 				
 				
