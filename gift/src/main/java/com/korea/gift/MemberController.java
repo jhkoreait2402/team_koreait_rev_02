@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -210,16 +212,28 @@ public class MemberController {
    
    @RequestMapping("mloginidsave")
    @ResponseBody
-   public HashMap<String, String> member_login_idcheck(String id){
+   public Cookie member_login_idcheck(String id, HttpServletResponse response){
 	   System.out.println("ㅎㅇ");
 	   System.out.println("체크한 아이디는 "+ id);
-	   HashMap<String, String> map = new HashMap<String, String>();
 	   
-	   map.put("id", id);
+	   Cookie cookie = new Cookie("saved_id", id);
+	   cookie.setMaxAge(60*60*24*7); // 1주일 쿠키
 	   
+	   System.out.println(cookie.getValue());
+	   cookie.setSecure(true);
 	   
-			   
-	   return map;
+	   response.addCookie(cookie);
+	   return cookie;
+   }
+   
+   @RequestMapping("mloginsavedidremove")
+   @ResponseBody
+   public void member_login_idcheckout(String id, HttpServletResponse response){
+	   
+	   Cookie cookie = new Cookie("saved_id", id);
+	   
+	   cookie.setMaxAge(0);
+	   response.addCookie(cookie);
    }
    
    
