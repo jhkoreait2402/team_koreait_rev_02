@@ -87,18 +87,19 @@
 		
 		
 		let saved_id = f.login_id_text.value.trim();
+		let check_id = document.getElementById('member_save_id_checkbox');
 		//let query_saved_id="{'saved_id':"+"'"+saved_id+"'}";
 		
 		
 
 		//체크박스 체크 시 아이디를 세션으로 보냄
-		if(document.getElementById('member_save_id_checkbox').checked == true){
+		if(check_id.checked == true){
 			//alert("잘 입력하셨습니다");
 			//alert(saved_id);
 			if(saved_id==null || saved_id=='') {
 				alert("아이디를 입력해 주십시오");
 				//alert(query_saved_id);
-			}else{
+			}else if(saved_id!=null){
 				alert("당신의 저장한 아이디는 "+saved_id);
 				//alert(query_saved_id);
 				//여기서 시작
@@ -116,57 +117,54 @@
 						},
 						contentType: "application/x-www-form-urlencoded",
 						success:function(data){
-							alert(data.id);
-							alert(JSON.stringify(data));
-							console.log(data.id);
-							console.log(JSON.stringify(data));
+							//alert(data.id);
+							//alert(JSON.stringify(data));
+							//console.log(data.name);
+							//let saved_id = JSON.stringify(data);
+							//console.log(saved_id);
+							//eval(saved_id);
 						},
 						error:function(){
 							alert("에러!");
 						}
-					
-
 				});
 				
-				/*
-				url:"/gift/mloginidsave",
-				data: {
-					name : "이름"
-				},
-				dataType:"text", // 돌려받는게 DATATYPE
-				contentType: "application/x-www-form-urlencoded",
-				type:"POST",
-				success: function(data){
-					if(data){
-						alert("데이터가 넘어감");
-					} else {
-						alert("데이터가 안넘어감");
-						console.log(data);
-					}
-				},
-				error:function(data){
-					alert("실패");
-					alert(data);
-				}
-				*/
+				//$.cookie("saved_id", $("#_saved_id").val(), {expires:7, path:'/'})
+				//$.removeCookie("saved_id",{path:'/'});
 				
 				
-				
-				
+
 			}
+		}
+		
+		function deleteCookie(f){
+			document.cookie = f+'=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 		}
 		
 		//체크박스 체크 시 세션, 쿠키 날림.
 		if(document.getElementById('member_save_id_checkbox').checked == false) {
 			alert("입력 해제");
+			deleteCookie("reply");
+			
+			if(saved_id!=null){
+			$.ajax({
+				url : "/gift/mloginsavedidremove",
+				type:"post",
+				data:{
+					id : saved_id
+				},
+				contentType: "application/x-www-form-urlencoded",
+				success:function(data){
+					if(data!=null){
+						console.log(data);
+					}
+				},
+				error:function(){
+					alert("에러!");
+				}
+		});
 		}
 		
-		/*if(saved_id==null || saved_id=='') {
-			alert("아이디를 입력해 주십시오");
-		}else{
-			alert("당신의 저장한 아이디는 "+saved_id);
-		}*/
-
 	}
 	
 
